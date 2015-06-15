@@ -38,11 +38,9 @@ var TodoItemsView = Backbone.View.extend({
 	},
 
 	render: function(){
-		var self = this;
-
-		this.$el.append("<input type='text' autofocus id='newTodoItem'></input")
-		this.$el.append("<button id='add'>Add</button>"); 
-		this.$el.append("<ul id='todoItems'></ul>"); 
+		var template = $("#todoItemsTemplate").html();
+		var html = Mustache.render(template);
+		this.$el.html(html);
 
 		return this;
 	}
