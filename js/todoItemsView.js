@@ -1,4 +1,6 @@
 var TodoItemsView = Backbone.View.extend({
+	id: "todoItemsContainer",
+	
  	initialize: function(options){
 		if (!(options && options.model))
 			throw new Error("model is not specified.");
@@ -17,25 +19,21 @@ var TodoItemsView = Backbone.View.extend({
 	},
 
 	events: {
-		"click #add": "onClickAdd",
 		"keypress #newTodoItem": "onKeyPress"
 	},
 
 	onKeyPress: function(e){
-		if (e.keyCode == 13)
-				this.onClickAdd();
-	},
+		if (e.keyCode == 13){
+				var $textBox = this.$("#newTodoItem");
 
-	onClickAdd: function(){
-		var $textBox = this.$("#newTodoItem");
+				if($textBox.val()){
+					var todoItem = new TodoItem({ title: $textBox.val() });
+					this.model.create(todoItem);
 
-		if($textBox.val()){
-			var todoItem = new TodoItem({ title: $textBox.val() });
-			this.model.create(todoItem);
-
-			$textBox.val("");
+					$textBox.val("");
+				}
 		}
-	},
+},
 
 	render: function(){
 		var template = $("#todoItemsTemplate").html();
