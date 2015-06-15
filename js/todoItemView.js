@@ -33,4 +33,4 @@ var TodoItemView = Backbone.View.extend({
 
 		return this;
 	}
-});
+ });
