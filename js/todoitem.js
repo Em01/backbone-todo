@@ -3,8 +3,8 @@ var TodoItem = Backbone.Model.extend({
 		isCompleted: false
 	},
 
-	url: "fakeUrl",
-	
+	urlRoot: "http://jsonplaceholder.typicode.com/todos",
+
 	validate: function(attrs){
 		if (!attrs.description)
 			return "Description is required.";
